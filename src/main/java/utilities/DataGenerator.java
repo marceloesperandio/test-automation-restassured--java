@@ -4,18 +4,20 @@ import java.util.Random;
 
 public class DataGenerator {
 
-    public static String generate9DigitNumber() {
-        Random random = new Random();
-        StringBuilder number = new StringBuilder();
+    public class RandomNumberGenerator {
 
-        // The first digit cannot be zero
-        number.append(random.nextInt(9) + 1);
-
-        // Generate the next 8 digits
-        for (int i = 0; i < 8; i++) {
-            number.append(random.nextInt(10)); // Generates numbers from 0 to 9
+        public static void main(String[] args) {
+            String numero = gerarNumero();
+            System.out.println("Número gerado: " + numero);
         }
 
-        return number.toString();
+        public static String gerarNumero() {
+            Random rand = new Random();
+
+            int numeroAleatorio = rand.nextInt(1000000000);
+            String numeroFormatado = String.format("%09d", numeroAleatorio);
+            String numeroFinal = "00" + numeroFormatado.substring(2);
+            return numeroFinal;
+        }
     }
 }

@@ -5,7 +5,7 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import models.request.RequestDataPojo;
+import model.RequestModel;
 
 import static constants.Endpoints.baseUrlDummyRestApi;
 import static constants.Path.pathRequestEmployees;
@@ -38,7 +38,7 @@ public class DummyRestApi {
                 .response();
     }
 
-    public Response postCreateEmployee(RequestDataPojo body) {
+    public Response postCreateEmployee(RequestModel body) {
         return given()
                 .spec(requestSpec)
                 .body(body)

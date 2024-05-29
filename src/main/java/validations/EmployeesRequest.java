@@ -1,41 +1,43 @@
 package validations;
 
-import models.request.RequestAddressDataPojo;
-import models.request.RequestDataPojo;
-import models.request.RequestPersonalDataPojo;
+
+import model.AddressModel;
+import model.PropertiesModel;
+import model.RequestModel;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class EmployeesRequest {
 
-    public static RequestDataPojo createEmployees() {
+    public static RequestModel createEmployees(String idEmployees, String firstName, String lastName) {
 
-        RequestAddressDataPojo addressDataPojo = RequestAddressDataPojo.builder()
+        AddressModel address = AddressModel.builder()
                 .street("40336 Redwing Avenue")
                 .state("California")
                 .city("Sacramento")
                 .country("United States")
                 .build();
 
-        ArrayList<RequestAddressDataPojo> addresses = new ArrayList<>();
-        addresses.add(addressDataPojo);
+        ArrayList<AddressModel> addressModels = new ArrayList<>();
+        addressModels.add(address);
 
-        RequestPersonalDataPojo employeesPersonalData = RequestPersonalDataPojo.builder()
-                .first_name("Lindsay")
-                .last_name("Becarra")
+        PropertiesModel properties = PropertiesModel.builder()
+                .idEmployees(idEmployees)
+                .firstName(firstName)
+                .lastName(lastName)
                 .age(28)
                 .email("lbecarra0@apache.org")
                 .gender("Male")
                 .birthDate("1984-11-09")
-                .address(addresses)
-                .job("Programmer I")
+                .address(addressModels)
+                .job("Programmer")
                 .salary("usd 3637.34")
                 .eventId(UUID.randomUUID().toString())
                 .build();
 
-        return RequestDataPojo.builder()
-                .properties(employeesPersonalData)
+        return RequestModel.builder()
+                .properties(properties)
                 .build();
     }
 }
